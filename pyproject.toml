@@ -1,0 +1,80 @@
+[project]
+name = "plugin-manager"
+version = "0.0.1"
+description = "A lightweight plugin manager."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE.md" }
+authors = [
+  { name = "Brian Metzler", email = "baldie@gmail.com" }
+]
+keywords = ["plugin", "extensibility", "hooks", "plugin", "manager"]
+classifiers = [
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Framework :: Pluggy",
+]
+
+dependencies = [
+]
+
+[project.urls]
+Homepage = "https://github.com/bkmetzler/plugin-manager"
+Repository = "https://github.com/bkmetzler/plugin-manager"
+Issues = "https://github.com/bkmetzler/plugin-manager/issues"
+
+[tool.hatch.version]
+path = "plugin_manager/version.py"
+
+[tool.hatch.build]
+include = [
+  "plugin_manager/**",
+  "README.md",
+  "LICENSE.md"
+]
+
+
+[tool.hatch.envs.default]
+dependencies = [
+  "pytest",
+  "ruff",
+  "build"
+]
+
+[tool.hatch.envs.default.scripts]
+test = "pytest"
+lint = "ruff --verbose format plugin_manager"
+build = "hatch build"
+
+[tool.black]
+line-length = 120
+
+[tool.flake8]
+max-line-length = 120
+exclude = [".git", "__pycache__", "*.pyc"]
+
+[tool.mypy]
+# Other mypy configurations...
+python_version = "3.12"
+disallow_untyped_defs = true
+show_error_codes = true
+no_implicit_optional = true
+warn_return_any = true
+exclude = ["docs", "tests"]
+
+[[tool.mypy.overrides]]
+module = ["pydantic.mypy"]
+strict = true
+follow_imports = "silent"
+# ignore_missing_imports = true
+# disable_error_code = ["import-not-found"]
+
+[[tool.mypy.overrides]]
+module = ["fastapi", "fastapi.responses"]
+strict = true
+follow_imports = "silent"
+ignore_missing_imports = true
+# disable_error_code = ["import-not-found"]

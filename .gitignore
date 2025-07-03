@@ -1,0 +1,10 @@
+.idea/
+.git/
+*.py[icod]
+venv/
+test.py
+__pycache__/
+*.egg-info/
+dist/
+build/
+settings.yaml
