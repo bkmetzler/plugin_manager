@@ -8,3 +8,6 @@ __pycache__/
 dist/
 build/
 settings.yaml
+plugins/
+sender.py
+receiver.py
